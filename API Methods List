@@ -1,0 +1,53 @@
+import me.proxygames.main.api.LevelSystemAPI;
+//To import the builth path//
+
+LevelSystemAPI.SetPlayerXp(OfflinePlayer p, int Xp)
+//To set the players Xp//
+
+LevelSystemAPI.SetPlayerLevel(OfflinePlayer p, int Level)
+//To set the players level//
+
+LevelSystemAPI.AddPlayerLevel(OfflinePlayer p, int Level)
+//Add players level//
+
+LevelSystemAPI.AddPlayerXp(OfflinePlayer p, int Xp)
+//Add players xp//
+
+LevelSystemAPI.GetPlayerXp(OfflinePlayer p)
+//returns the players level//
+
+LevelSystemAPI.GetPlayerXp(OfflinePlayer p)
+//returns the players xp//
+
+LevelSystemAPI.GetPlayerAchievementsProcent(OfflinePlayer p)
+//returns the procent you got on that level//
+
+LevelSystemAPI.GetPlayerTotalXpNextLevel(OfflinePlayer p)
+//return the amount xp you need for your level//
+
+LevelSystemAPI.GetConfigStartXp()
+//returns the amount the xp will start at level 0//
+
+LevelSystemAPI.GetConfigUpPerLevel()
+//returns the procent for the level formule//
+
+LevelSystemAPI.PlayerIsMaxed(OfflinePlayer p)
+//returns if the player is maxed: true/false//
+
+LevelSystemAPI.DeletePlayerfile(OfflinePlayer p)
+//deletes the YAML file of the player//
+
+LevelSystemAPI.SetConfigUpPerLevel(int UpPerLevel)
+//Set the upperlevel % in the congif (leave the %)//
+
+LevelSystemAPI.PlayerFileExist(OfflinePlayer p)
+//returns if the player file exists in database: true/false//
+
+LevelSystemAPI.SetConfigStartXp(int StartXp)
+//sets the config start xp//
+
+LevelSystemAPI.SetConfigMaxLevel(int MaxLevel)
+//sets the maximum level in the config//
+
+LevelSystemAPI.GetConfigMaxLevel()
+//returns the config max level you can reach//
