@@ -1,0 +1,61 @@
+# PLUGIN LEVELSYSTEM made by ProxyGames14
+# Plugin version: v1.0.1
+# to auto check updates
+# Visit https://goo.gl/MxU5yM for the sound list
+
+# PlaceHolders:
+# - %level%
+# - %player%
+# - %xp%
+# - %procent%
+# - %xplevelup%
+# - %maxlevel%
+# - %ismax%
+# - %permission%
+
+# Color codes
+# &a &b &c &d &e &f
+# &0 &1 &2 &3 &4 &5
+# &6 &7 &8 &9
+
+# PermissionsList
+# levelsystem.checkupdates
+# levelsystem.command
+# levelsystem.command.help
+# levelsystem.checkupdates
+# levelsystem.command.set
+# levelsystem.command.set.level
+# levelsystem.command.set.xp
+# levelsystem.command.add
+# levelsystem.command.add.level
+# levelsystem.command.add.xp
+# levelsystem.command.remove
+# levelsystem.command.remove.level
+# levelsystem.command.remove.xp
+# levelsystem.command.delete
+# levelsystem.command.check
+# levelsystem.command.check.other
+# levelsystem.command.check.self
+# levelsystem.command.reload
+# levelsystem.command.format
+# levelsystem.command.format.add
+# levelsystem.command.format.remove
+# levelsystem.command.format.edit
+# levelsystem.command.format.check
+update-checker: true
+StartXp: 1000
+UpPerLevel: 125%
+MaxLevel: 10
+ChatFormat: true
+TabListBelowName: true
+LevelUpSounds:
+- BLOCK_NOTE_PLING:1:2
+- ENTITY_FIREWORK_LAUNCH:1:1
+- ENTITY_FIREWORK_BLAST:1:1
+- ENTITY_FIREWORK_TWINKLE:1:1
+LevelMaxSounds:
+- ENTITY_ENDERDRAGON_AMBIENT:1:1
+- ENTITY_WITHER_SPAWN:1:2
+- ENTITY_FIREWORK_LAUNCH:1:1
+- ENTITY_FIREWORK_BLAST:1:1
+- ENTITY_FIREWORK_TWINKLE:1:1

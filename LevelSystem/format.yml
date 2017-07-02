@@ -1,0 +1,45 @@
+Formats:
+  0-10:
+    format: '&e%level% '
+  11-20:
+    format: '&6%level% '
+  21-30:
+    format: '&a%level% '
+  31-40:
+    format: '&2%level% '
+  41-50:
+    format: '&b%level% '
+  51-60:
+    format: '&4%level% '
+  61-70:
+    format: '&5%level% '
+  71-80:
+    format: '&d%level% '
+  81-90:
+    format: '&9%level% '
+  91-99:
+    format: '&4%level% '
+  100-100:
+    format: '&c%level% '
+
+Type: prefix
+CheckStatsFormat:
+- '&9&m-------------------------------------------'
+- '&a&l%player%''s &e&lStats'
+- ''
+- '&bLeveling Stats&f: %ismax%'
+- '&bXp Amount&f: %xp%/%xplevelup% %procent%%'
+- '&bLevel Amount&f: %level%'
+- '&9&m-------------------------------------------'
+LevelUpFormat:
+- '&e&m----------------------------------------------------'
+- '&r                &e&k&&aCONGRATULATIONS YOU LEVELED UP&e&k&'
+- '&a                      You are now &blevel %level%&a!'
+- '&e&m----------------------------------------------------'
+MaxLevelFormat:
+- '&e&m----------------------------------------------------'
+- '&r                &e&k&&6CONGRATULATIONS YOU LEVELED MAX&e&k&'
+- '&a                      You are now &blevel &cMAX&a!'
+- '&e&m----------------------------------------------------'
+NoPermissions: "&cLevel > &7Sorry You dont have permissions to do that! &e%permissions%"
+
