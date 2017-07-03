@@ -28,6 +28,8 @@ public class main extends JavaPlugin implements Listener {
 	  public static File congiffile;
 	  static FileConfiguration format;
 	  public static File formatfile;
+	  static FileConfiguration worldbar;
+	  public static File worldbarfile;
 
 	  private Updater updatechecker;
 	public String version;
@@ -74,6 +76,7 @@ public class main extends JavaPlugin implements Listener {
 		  for(Player online : Bukkit.getOnlinePlayers()) {
 	          OfflineFiles.CreateEveryone(online);
 	          LevelUpdater.UpdateTabList(online);
+	          LevelSystem.SetBar(online);
 		  }
 	}
 
@@ -86,24 +89,51 @@ public class main extends JavaPlugin implements Listener {
     {
       return format;
     }
-	  
+    public static FileConfiguration getWorldBars()
+    {
+      return worldbar;
+    }
+    
 	  public void CreateConfig() {
 
 		  
 		    congiffile = new File(getDataFolder(), "config.yml");
 		    formatfile = new File(getDataFolder(), "format.yml");
+		    worldbarfile = new File(getDataFolder(), "worldbar.yml");
 		    
 		    if (!congiffile.exists()) {
 		      congiffile.getParentFile().mkdirs();
 		      saveResource("config.yml", false);
 		    }
+		    if (!worldbarfile.exists()) {
+		    	worldbarfile.getParentFile().mkdirs();
+			      saveResource("worldbar.yml", false);
+			    }
 		    if (!formatfile.exists()) {
 		    	formatfile.getParentFile().mkdirs();
 			      saveResource("format.yml", false);
 			    }
 
+		    
 		    config = new YamlConfiguration();
 		    format = new YamlConfiguration();
+		    worldbar = new YamlConfiguration();
+		    
+		    
+		    
+		    try {
+				worldbar.load(main.worldbarfile);
+			} catch (FileNotFoundException e) {
+				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 674: Coud not load worldbar.yml");
+				e.printStackTrace();
+			} catch (IOException e) {
+				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 342: Coud not load worldbar.yml");
+				e.printStackTrace();
+			} catch (InvalidConfigurationException e) {
+				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 113: Coud not load worldbar.yml");
+				e.printStackTrace();
+			}
+		    
 		    try {
 				config.load(main.congiffile);
 			} catch (FileNotFoundException e) {
@@ -117,6 +147,7 @@ public class main extends JavaPlugin implements Listener {
 				e.printStackTrace();
 			}
 		    
+    
 		    
 		    try {
 				format.load(main.formatfile);
@@ -131,16 +162,26 @@ public class main extends JavaPlugin implements Listener {
 				e.printStackTrace();
 			}
 		    
+		    
+			try {
+				getWorldBars().save(worldbarfile);
+			} catch (IOException e) {
+				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 543: Coud not save worldbar.yml");
+				e.printStackTrace();
+			}
+			
+		    
 			try {
 				getConfigFile().save(congiffile);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 453: Coud not save config.yml");
 				e.printStackTrace();
 			}
+
 			try {
 				getformats().save(formatfile);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 234: Coud not save format.yml");
 				e.printStackTrace();
 			}
 		    

@@ -37,7 +37,7 @@ if(newversion > version) {
 			));
 } else {
 	plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', 
-			"&aLevelSystem &ev" + currentVersion + "&ais up to date"
+			"&aLevelSystem &ev" + currentVersion + " &ais up to date"
 			));
 }
 brs.close();

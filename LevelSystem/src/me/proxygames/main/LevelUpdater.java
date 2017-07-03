@@ -13,7 +13,6 @@ import org.bukkit.scoreboard.Team;
 public class LevelUpdater {
 
 	
-	
 	@SuppressWarnings("deprecation")
 	public static void UpdateChat(Player p, AsyncPlayerChatEvent event) {
     if(main.getformats().getString("Type").equalsIgnoreCase("prefix")) {

@@ -3,6 +3,9 @@ package me.proxygames.main;
 
 import java.util.List;
 
+
+import me.proxygames.main.api.LevelSystemAPI;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -35,6 +38,7 @@ public class LevelSystem {
 		return List;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void Datas(OfflinePlayer p) {
 		
 		String[] levelinfo = getData(p);	
@@ -70,7 +74,32 @@ public class LevelSystem {
 			
 		
 		}
+		if(p.isOnline()) {
+			LevelSystem.SetBar(Bukkit.getPlayer(p.getName()));
 		}
+
+		}
+	@SuppressWarnings("deprecation")
+	public static void SetBar(Player p) {
+		if(!main.getWorldBars().getStringList("worlds").contains(p.getWorld().getName().toLowerCase())) {
+			return;
+		}
+        p.setLevel(Integer.parseInt(EditPlayerData.getData(Bukkit.getOfflinePlayer(p.getName()), "level")));
+        String getprocent = LevelSystem.getData(Bukkit.getOfflinePlayer(p.getName()))[1];
+        if(Double.parseDouble(getprocent) == 0) {
+        	p.setExp((float) 0.0);	
+        	return;
+        }
+        double ProcentToExp = (Double.parseDouble(getprocent) /100) * 1;
+        p.setExp((float) ProcentToExp);
+        
+		if(LevelSystemAPI.PlayerIsMaxed(Bukkit.getOfflinePlayer(p.getName()))) {
+			p.setExp((float) 0.0);
+			return;
+
+		}
+	}
+	
 	@SuppressWarnings("deprecation")
 	public static void LevelMessage(Player player, OfflinePlayer p) {
 		Runable run = new Runable(mains);

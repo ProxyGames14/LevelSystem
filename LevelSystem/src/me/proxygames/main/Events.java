@@ -22,21 +22,25 @@ public class Events implements Listener {
 	private Updater updatechecker;
 	public String version;
 
-	  @EventHandler
+	@EventHandler
 	  public void chatcolor(AsyncPlayerChatEvent event)
 	  {
 	        String message = event.getMessage();
 	        event.setMessage(ChatColor.translateAlternateColorCodes('&', message));
+	        
 	    }
 	  @EventHandler
 	  public void onJoin(PlayerJoinEvent event)
-	  {    if (main.getConfigFile().getBoolean("update-checker")) {
+	  {   
+          
+		  if (main.getConfigFile().getBoolean("update-checker")) {
 		  if(event.getPlayer().hasPermission("levelsystem.checkupdates")) {
 			  updatechecker = new Updater(mains);
-             if(updatechecker.SendUpdates() == "none") return;
+             if(updatechecker.SendUpdates() != "none")
 			  event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', updatechecker.SendUpdates()));
 	
 		  }
+
 	  }
 		   Database database = new Database();
 		   database.CreateFile(event);
@@ -46,7 +50,7 @@ public class Events implements Listener {
 		  }
 			  }
 
-		  
+			  LevelSystem.SetBar(event.getPlayer());
 	  }
 	  
 	  @EventHandler
@@ -57,6 +61,7 @@ public class Events implements Listener {
           LevelUpdater.UpdateTabList(online);
 		  }
 		  }
+		  LevelSystem.SetBar(event.getPlayer());
 		  
 	  }
 	@EventHandler

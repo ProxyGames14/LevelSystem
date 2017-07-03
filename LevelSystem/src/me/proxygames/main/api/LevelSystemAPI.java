@@ -63,6 +63,9 @@ public static int GetPlayerTotalXpNextLevel(OfflinePlayer p) {
 public static int GetConfigStartXp() {
 	return main.getConfigFile().getInt("StartXp");
 }
+public static int GetConfigMaxLevel() {
+	return main.getConfigFile().getInt("MaxLevel");
+}
 public static int GetConfigUpPerLevel() {
 	return main.getConfigFile().getInt("UpPerLevel");
 	

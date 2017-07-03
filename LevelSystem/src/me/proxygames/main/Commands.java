@@ -37,14 +37,12 @@ public class Commands implements CommandExecutor {
 				ErrorMessage(sender, label);
 				return false;
 			}
-
 			
             if (!(a[0].equalsIgnoreCase("help"))
                 &&!(a[0].equalsIgnoreCase("reload"))
                &&!(a[0].equalsIgnoreCase("set"))
                &&!(a[0].equalsIgnoreCase("add"))
                &&!(a[0].equalsIgnoreCase("check"))       
-               &&!(a[0].equalsIgnoreCase("reload"))  
                &&!(a[0].equalsIgnoreCase("remove"))
                &&!(a[0].equalsIgnoreCase("delete")) 
                &&!(a[0].equalsIgnoreCase("format")) 
@@ -73,7 +71,6 @@ public class Commands implements CommandExecutor {
 			    + "&d&l&oLevel System &7&oPage: 1/2>\n"
 				+"                   \n&61. &a/" + label +" help &f(For the info page)"
 				+"\n&62. &a/" + label +" reload &f(To reload the plugin)"
-				+"\n&63. &a/" + label +" help &6[PAGE] &f(to see the commands)"
 				+"\n&63. &a/" + label +" set &6[PLAYER] &aXP/LEVEL &6[AMOUNT]"
 				+"\n&64. &a/" + label +" add &6[PLAYER] &aXP/LEVEL &6[AMOUNT]"
 				+"\n&65. &a/" + label +" remove &6[PLAYER] &aXP/LEVEL &6[AMOUNT]"
@@ -368,6 +365,7 @@ public class Commands implements CommandExecutor {
 				  for(Player online : Bukkit.getOnlinePlayers()) {
 			          OfflineFiles.CreateEveryone(online);
 			          LevelUpdater.UpdateTabList(online);
+			          LevelSystem.SetBar(online);
 				  }
 				main.CreateConfig();
 
