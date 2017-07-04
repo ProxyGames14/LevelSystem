@@ -18,13 +18,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Commands implements CommandExecutor {
-
+	main plugin;
 	private main main;
-	public Commands(main main) {
+	public Commands(main main, main plugin) {
 		this.main = main;
+		this.plugin = plugin;
 	}	
 	private Updater updatechecker;
 	public String version;
+	
+
 	
 	@SuppressWarnings({ "deprecation", "static-access" })
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] a) {	
@@ -110,7 +113,9 @@ public class Commands implements CommandExecutor {
 			}
 				updatechecker = new Updater(main);
 		        if(updatechecker.SendUpdates() == "none") {
-		        	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &fNo updates found! Running version &av" + main.plugin.getDescription().getVersion()));
+		        	
+		        	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &fNo updates found! Running version &av" + plugin.getDescription().getVersion()));
+		        	return false;
 		        }
 				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', updatechecker.SendUpdates()));
 			}
@@ -234,6 +239,13 @@ public class Commands implements CommandExecutor {
 			
 			
 			if(a[0].equalsIgnoreCase("remove")) {
+				
+
+				sender.sendMessage("comming soon");
+				int i = 1;
+				if (i == 1)
+				return false;
+				
 			    if(!sender.hasPermission("levelsystem.command.remove")) {
 			    	NoPermissions.Send(sender, "levelsystem.command.remove");
 			    	return false;

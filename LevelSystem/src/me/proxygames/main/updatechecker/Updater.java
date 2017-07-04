@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import me.proxygames.main.main;
@@ -60,12 +61,13 @@ double newversion = Double.parseDouble(newvervionstring.replace(".", ""));
 double version = Double.parseDouble(currentVersion.replace(".", ""));
 brs.close();
 if(newversion > version) {
-	return "&cLevelSystem > &bLevelSystem &ev" + line.substring(13) + " &bHas been released!\nGet it now on BukkitDev! &fhttps://dev.bukkit.org/";
+	return "&cLevelSystem > &bLevelSystem &ev" + line.substring(13) + " &bHas been released!\nGet it now on BukkitDev! &fhttps://dev.bukkit.org/projects/levelsystem";
 } else {
 	return "none";
 }
 
 } catch (IOException e) {
+	Bukkit.broadcastMessage("dsd");
 	
 }
 }

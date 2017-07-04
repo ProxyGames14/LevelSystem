@@ -45,7 +45,7 @@
 update-checker: true
 StartXp: 1000
 UpPerLevel: 125%
-MaxLevel: 10
+MaxLevel: 100
 ChatFormat: true
 TabListBelowName: true
 LevelUpSounds:

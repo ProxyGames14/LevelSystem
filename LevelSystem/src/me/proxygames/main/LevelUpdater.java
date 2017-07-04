@@ -97,6 +97,34 @@ public class LevelUpdater {
 		  return formatfile;
 		
 	}
+	
+	@SuppressWarnings("deprecation")
+	public static String GetBroadCastFormat(Player p) {		
+		  Set<String> List = main.getformats().getConfigurationSection("BroadcastMessages").getKeys(false);
+		  String format;
+		  java.util.List<String> formatfile;
+		  for(int i = 0; i < List.size(); i++) {
+			  format = (String) List.toArray()[i];
+			  String[] counts = format.split("-");
+			  int first = Integer.parseInt(counts[0]);
+			  int last = Integer.parseInt(counts[1]) + 1;
+			  
+			  for(int test = first; test < last; test++) {
+				  if(Integer.parseInt(EditPlayerData.getData(Bukkit.getOfflinePlayer(p.getName()), "level")) == test) {
+					  formatfile = main.getformats().getStringList("BroadcastMessages." + format + ".message");
+					  if(main.getformats().getString("Type").equalsIgnoreCase("prefix")) {
+						  for(int is = 0; is < formatfile.size(); is++) {
+							  Bukkit.broadcastMessage(PlaceHolders.Pholders(Bukkit.getOfflinePlayer(p.getName()), LevelSystem.getData(Bukkit.getOfflinePlayer(p.getName())), ToColors(formatfile.get(is))));  
+						  }
+
+					  }
+				  }
+			  }
+		  }
+		return "hey";
+		
+	}	
+	
     
 	  private static String ToColors(String text)
 	  {

@@ -34,7 +34,9 @@ public class main extends JavaPlugin implements Listener {
 	  private Updater updatechecker;
 	public String version;
 
-	
+	public static main pluginthis() {
+		return plugin;
+	}
 	
 	public void onEnable() {
 		
@@ -193,7 +195,7 @@ public class main extends JavaPlugin implements Listener {
 	  
 public void registerListeners() {
     getServer().getPluginManager().registerEvents(new Events(this), this);
-    getCommand("levelsystem").setExecutor(new Commands(this));
+    getCommand("levelsystem").setExecutor(new Commands(this, this));
 
 }
 }

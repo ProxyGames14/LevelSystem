@@ -65,6 +65,7 @@ public class LevelSystem {
 			if(p.isOnline()) {
 			Player player = (Player) p;
 			LevelMessage(player, p);
+			BroadCastMessage((Player) p);
 			}
 			
 			if(xp >= maxxp) {
@@ -114,6 +115,11 @@ public class LevelSystem {
 		for(int i = 0 ; i < main.getformats().getStringList("LevelUpFormat").size(); i++) {
 			player.sendMessage(FixColors(PlaceHolders.Pholders(player, getData(p), main.getformats().getStringList("LevelUpFormat").get(i))));
 		}
+	}
+	
+	public static void BroadCastMessage(Player p) {
+		LevelUpdater.GetBroadCastFormat(p);
+		return;
 	}
 	@SuppressWarnings("deprecation")
 	public static void LevelSound(Player p) {

@@ -21,6 +21,13 @@ Formats:
     format: '&4%level% '
   100-100:
     format: '&c%level% '
+BroadcastMessages:
+  0-99:
+    message: 
+    - '&a%player% &ejust leveled to &bLevel %level%'
+  100-100:
+    message: 
+    - '&a%player% &6Maxed level'
 
 Type: prefix
 CheckStatsFormat:
@@ -41,5 +48,4 @@ MaxLevelFormat:
 - '&r                &e&k&&6CONGRATULATIONS YOU LEVELED MAX&e&k&'
 - '&a                      You are now &blevel &cMAX&a!'
 - '&e&m----------------------------------------------------'
-NoPermissions: "&cLevel > &7Sorry You dont have permissions to do that! &e%permissions%"
-
+NoPermissions: '&cLevel > &7Sorry You dont have permissions to do that! &e%permissions%'
