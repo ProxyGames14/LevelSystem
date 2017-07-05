@@ -18,7 +18,7 @@ Formats:
   81-90:
     format: '&9%level% '
   91-99:
-    format: '&4%level% '
+    format: '&3%level% '
   100-100:
     format: '&c%level% '
 BroadcastMessages:

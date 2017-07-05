@@ -21,6 +21,16 @@ currentVersion = plugin.getDescription().getVersion();
 private String currentVersion;
 private String readurl = "https://raw.githubusercontent.com/proxygames14/LevelSystem/master/version.txt";
  
+static int amount = 0;
+public static int UpdaterFiles() {
+	UpdateWorldBar.CheckUpdate();
+	UpdateConfig.CheckUpdate();
+	UpdateFormats.CheckUpdate();
+	int current = amount;
+	amount = 0;
+	return current;
+}
+
 public void startUpdateCheck() {
 
 if (main.getConfigFile().getBoolean("update-checker")) {

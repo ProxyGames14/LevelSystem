@@ -50,6 +50,7 @@ public class Commands implements CommandExecutor {
                &&!(a[0].equalsIgnoreCase("delete")) 
                &&!(a[0].equalsIgnoreCase("format")) 
                &&!(a[0].equalsIgnoreCase("checkupdates")) 
+               &&!(a[0].equalsIgnoreCase("update")) 
                 ) 
             {	
             	ErrorMessage(sender, label);
@@ -71,12 +72,12 @@ public class Commands implements CommandExecutor {
 				if(a.length == 1 || a[1].equalsIgnoreCase("1") ) {
 				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', 
 			    "\n&7----------------------------------------\n"
-			    + "&d&l&oLevel System &7&oPage: 1/2>\n"
-				+"                   \n&61. &a/" + label +" help &f(For the info page)"
+			    + "&d&l&oLevel System &ev" + plugin.getDescription().getVersion() + "&7&oPage: 1/2>\n"
+				+"\n&61. &a/" + label +" help &f(For the info page)"
 				+"\n&62. &a/" + label +" reload &f(To reload the plugin)"
 				+"\n&63. &a/" + label +" set &6[PLAYER] &aXP/LEVEL &6[AMOUNT]"
 				+"\n&64. &a/" + label +" add &6[PLAYER] &aXP/LEVEL &6[AMOUNT]"
-				+"\n&65. &a/" + label +" remove &6[PLAYER] &aXP/LEVEL &6[AMOUNT]"
+				+"\n&65. &c&m/" + label +" remove [PLAYER] XP/LEVEL [AMOUNT]"
 				+"\n&7----------------------------------------"
 						));
 				return false;
@@ -92,10 +93,11 @@ public class Commands implements CommandExecutor {
 					if(a[1].equalsIgnoreCase("2")) {
 						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', 
 							    "\n&7----------------------------------------\n"
-							    + "&d&l&oLevel System &7&oPage: 2/2>\n \n"
+									    + "&d&l&oLevel System &ev" + plugin.getDescription().getVersion() + "&7&oPage: 2/2>\n"
 								+"\n&66. &a/" + label +" check &6[PLAYER] &f(To check the level)"
 								+"\n&67. &a/" + label +" delete &6[PLAYER] &f(To delete the player file)"
 								+"\n&68. &a/" + label +" checkupdates &f(To check updates on the site)"
+								+"\n&69. &a/" + label +" update &f(To check updates and fix file data)"
 								+"\n&7----------------------------------------"
 								));
 					}
@@ -177,7 +179,23 @@ public class Commands implements CommandExecutor {
 			}
 			
 			
-			
+			if(a[0].equalsIgnoreCase("update")) {
+				if(a.length != 1) {
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Type &a/" + label +" update"));
+					return false;	
+				}
+					
+				main.CreateConfig();
+				int amount = Updater.UpdaterFiles();
+
+				if(amount == 0) {
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7No updates found, You are up to date!"));
+				} else {
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &aSuccesfully updated &e" + amount + " &aThing(s)!"));
+				}
+
+				return false;
+			}
 			
 			if(a[0].equalsIgnoreCase("add")) {
 			    if(!sender.hasPermission("levelsystem.command.add")) {
@@ -374,16 +392,20 @@ public class Commands implements CommandExecutor {
 					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Type &a/" + label +" reload"));
 					return false;	
 				}
+				main.CreateConfig();
+				Updater.UpdaterFiles();
 				  for(Player online : Bukkit.getOnlinePlayers()) {
 			          OfflineFiles.CreateEveryone(online);
 			          LevelUpdater.UpdateTabList(online);
 			          LevelSystem.SetBar(online);
-				  }
-				main.CreateConfig();
+				  }				
+
 
 				Reload reload = new Reload();
 				reload.reloading();
+				
 				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Reloaded Succesfully!" + " &f" + reload.GetAmount() + " Files"));
+				
 			}
 			
 			
