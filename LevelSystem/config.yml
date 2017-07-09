@@ -23,6 +23,7 @@
 # levelsystem.command
 # levelsystem.command.help
 # levelsystem.checkupdates
+# levelsystem.command.download
 # levelsystem.command.set
 # levelsystem.command.set.level
 # levelsystem.command.set.xp
@@ -33,6 +34,7 @@
 # levelsystem.command.remove.level
 # levelsystem.command.remove.xp
 # levelsystem.command.delete
+# levelsystem.command.update
 # levelsystem.command.check
 # levelsystem.command.check.other
 # levelsystem.command.check.self

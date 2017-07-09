@@ -1,6 +1,9 @@
 package me.proxygames.main.updatechecker;
 
+import java.io.File;
 import java.io.IOException;
+
+import org.bukkit.Bukkit;
 
 import me.proxygames.main.main;
 
@@ -9,7 +12,10 @@ public class UpdateConfig {
 	
 	public static void CheckUpdate() {
 
-
+	    if(!new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), "DataBase").exists()) {
+		    File dir = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), "DataBase");
+		    dir.mkdir();
+	    }
 
 		if(main.getConfigFile().getString("update-checker") == null) {
 			main.getConfigFile().set("update-checker", true);

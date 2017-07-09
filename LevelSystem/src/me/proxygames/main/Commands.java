@@ -7,6 +7,7 @@ import java.io.File;
 
 
 import me.proxygames.main.format.MainForm;
+import me.proxygames.main.updatechecker.DownloadPlugin;
 import me.proxygames.main.updatechecker.Updater;
 
 import org.bukkit.Bukkit;
@@ -51,6 +52,7 @@ public class Commands implements CommandExecutor {
                &&!(a[0].equalsIgnoreCase("format")) 
                &&!(a[0].equalsIgnoreCase("checkupdates")) 
                &&!(a[0].equalsIgnoreCase("update")) 
+               &&!(a[0].equalsIgnoreCase("download")) 
                 ) 
             {	
             	ErrorMessage(sender, label);
@@ -72,7 +74,7 @@ public class Commands implements CommandExecutor {
 				if(a.length == 1 || a[1].equalsIgnoreCase("1") ) {
 				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', 
 			    "\n&7----------------------------------------\n"
-			    + "&d&l&oLevel System &ev" + plugin.getDescription().getVersion() + "&7&oPage: 1/2>\n"
+			    + "&d&l&oLevel System &ev" + plugin.getDescription().getVersion() + " &7&oPage: 1/2>\n"
 				+"\n&61. &a/" + label +" help &f(For the info page)"
 				+"\n&62. &a/" + label +" reload &f(To reload the plugin)"
 				+"\n&63. &a/" + label +" set &6[PLAYER] &aXP/LEVEL &6[AMOUNT]"
@@ -93,11 +95,12 @@ public class Commands implements CommandExecutor {
 					if(a[1].equalsIgnoreCase("2")) {
 						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', 
 							    "\n&7----------------------------------------\n"
-									    + "&d&l&oLevel System &ev" + plugin.getDescription().getVersion() + "&7&oPage: 2/2>\n"
+								+ "&d&l&oLevel System &ev" + plugin.getDescription().getVersion() + " &7&oPage: 2/2>\n"
 								+"\n&66. &a/" + label +" check &6[PLAYER] &f(To check the level)"
 								+"\n&67. &a/" + label +" delete &6[PLAYER] &f(To delete the player file)"
 								+"\n&68. &a/" + label +" checkupdates &f(To check updates on the site)"
 								+"\n&69. &a/" + label +" update &f(To check updates and fix file data)"
+								+"\n&610. &a/" + label +" download &f(To download newest version)"
 								+"\n&7----------------------------------------"
 								));
 					}
@@ -177,9 +180,22 @@ public class Commands implements CommandExecutor {
 				return false;
 				
 			}
-			
+			if(a[0].equalsIgnoreCase("download")) {
+			    if(!sender.hasPermission("levelsystem.command.download")) {
+			    	NoPermissions.Send(sender, "levelsystem.command.download");
+			    	return false;
+			    }
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &eTrying to download from Bukkit!"));
+				DownloadPlugin.download(sender);
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &aSuccesfully downloaded&b LevelSystem &ev" + Updater.GetNewestVersion() + " \n&cLevel > &cTIP &fReload to sumbit"));
+				return false;
+			}
 			
 			if(a[0].equalsIgnoreCase("update")) {
+			    if(!sender.hasPermission("levelsystem.command.update")) {
+			    	NoPermissions.Send(sender, "levelsystem.command.update");
+			    	return false;
+			    }
 				if(a.length != 1) {
 					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Type &a/" + label +" update"));
 					return false;	
@@ -257,8 +273,7 @@ public class Commands implements CommandExecutor {
 			
 			
 			if(a[0].equalsIgnoreCase("remove")) {
-				
-
+  
 				sender.sendMessage("comming soon");
 				int i = 1;
 				if (i == 1)
@@ -366,7 +381,7 @@ public class Commands implements CommandExecutor {
 				   p = Bukkit.getOfflinePlayer(a[1]) ;
 				}
 				
-			    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), File.separator + "DataBase");
+			    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), File.separator + "DataBase");
 		        File f = new File(userdata, File.separator + p.getUniqueId() + ".yml");
 		        
 		        if(!f.exists()) {

@@ -34,12 +34,15 @@ public class main extends JavaPlugin implements Listener {
 	  private Updater updatechecker;
 	public String version;
 
-	public static main pluginthis() {
-		return plugin;
+	public static main pl;
+	   
+	public main() {
+	    pl = this;
 	}
 	
 	public void onEnable() {
-		
+
+
 	getServer().getPluginManager().registerEvents(this, this);
 	PluginDescriptionFile pdfile = getDescription();
 	ConsoleCommandSender clogger = this.getServer().getConsoleSender();
@@ -67,8 +70,10 @@ public class main extends JavaPlugin implements Listener {
 	    clogger.sendMessage(ChatColor.DARK_RED + pdfile.getName() + " Has Been Disabled");
 	    clogger.sendMessage(ChatColor.GREEN + "Plugin version: " + ChatColor.YELLOW + "v" +getDescription().getVersion());
 	    clogger.sendMessage(ChatColor.GOLD + "---------------------------------------");
+	    if(!Bukkit.getOnlinePlayers().isEmpty())
 		RemoveTabList();
 	}
+
 	public void RemoveTabList() {
 		  for(Player online : Bukkit.getOnlinePlayers()) {
 	          LevelUpdater.UpdateTabList(online);
@@ -125,7 +130,7 @@ public class main extends JavaPlugin implements Listener {
 		    
 		    
 		    try {
-				worldbar.load(main.worldbarfile);
+				worldbar.load(worldbarfile);
 			} catch (FileNotFoundException e) {
 				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 674: Coud not load worldbar.yml");
 				e.printStackTrace();
@@ -138,7 +143,7 @@ public class main extends JavaPlugin implements Listener {
 			}
 		    
 		    try {
-				config.load(main.congiffile);
+				config.load(congiffile);
 			} catch (FileNotFoundException e) {
 				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 126: Coud not load config.yml");
 				e.printStackTrace();
@@ -153,7 +158,7 @@ public class main extends JavaPlugin implements Listener {
     
 		    
 		    try {
-				format.load(main.formatfile);
+				format.load(formatfile);
 			} catch (FileNotFoundException e) {
 				  getServer().getConsoleSender().sendMessage(ChatColor.RED + "ERROR 126: Coud not load format.yml");
 				e.printStackTrace();

@@ -10,7 +10,7 @@ public class DeleteFiles {
 	public static String DeletePlayerFile(OfflinePlayer p) {
 		String playeruuid = p.getUniqueId().toString();
 		
-	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), File.separator + "DataBase");
+	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), File.separator + "DataBase");
         File f = new File(userdata, File.separator + playeruuid + ".yml");
         
         if(!f.exists()) {

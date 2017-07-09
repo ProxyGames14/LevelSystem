@@ -17,13 +17,13 @@ public class Database {
 	public void CreateFile(PlayerJoinEvent event) {
 	 Player player = event.getPlayer();
 	    String playeruuid = player.getUniqueId().toString();	 
-	    if(!new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), "DataBase").exists()) {
-		    File dir = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), "DataBase");
+	    if(!new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), "DataBase").exists()) {
+		    File dir = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), "DataBase");
 		    dir.mkdir(); 	
 	    }
 
 	    
-	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), File.separator + "DataBase");
+	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), File.separator + "DataBase");
         File f = new File(userdata, File.separator + playeruuid + ".yml");
 	    FileConfiguration playerData = YamlConfiguration.loadConfiguration(f); 
 	    

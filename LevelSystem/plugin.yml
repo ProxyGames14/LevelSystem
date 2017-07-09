@@ -1,5 +1,5 @@
-name: LevelSystem
-version: 1.0.4
+name: LevelSystemAPI
+version: 1.0.5
 author: ProxyGames
 main: me.proxygames.main.main
 commands:

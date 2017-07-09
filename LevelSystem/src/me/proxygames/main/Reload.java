@@ -11,12 +11,12 @@ public class Reload {
 	int amount = 0;
   public void reloading() {
   
-	    if(!new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), "DataBase").exists()) {
-		    File dir = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), "DataBase");
+	    if(!new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), "DataBase").exists()) {
+		    File dir = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), "DataBase");
 		    dir.mkdir(); 	
 	    } 
 	  
-    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), File.separator + "DataBase");
+    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), File.separator + "DataBase");
     File[] files = userdata.listFiles();
 
     for (File f:files)  

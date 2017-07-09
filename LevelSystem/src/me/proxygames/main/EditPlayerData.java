@@ -12,7 +12,7 @@ public class EditPlayerData {
 
 	
 	public static String getData(OfflinePlayer p, String type){
-    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), File.separator + "DataBase");
+    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), File.separator + "DataBase");
     File f = new File(userdata, File.separator + p.getUniqueId() + ".yml");
     FileConfiguration playerData = YamlConfiguration.loadConfiguration(f); 
     
@@ -24,7 +24,7 @@ public class EditPlayerData {
 	}
 	
 	public static void setData(OfflinePlayer p, String type, int Amount) {
-	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), File.separator + "DataBase");
+	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), File.separator + "DataBase");
 	    File f = new File(userdata, File.separator + p.getUniqueId() + ".yml");
 	    FileConfiguration playerData = YamlConfiguration.loadConfiguration(f); 
 	    
@@ -45,7 +45,7 @@ public class EditPlayerData {
 	}
 	
 	public static void addData(OfflinePlayer p, String type, int Amount) {
-	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), File.separator + "DataBase");
+	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), File.separator + "DataBase");
 	    File f = new File(userdata, File.separator + p.getUniqueId() + ".yml");
 	    FileConfiguration playerData = YamlConfiguration.loadConfiguration(f); 
 	    
@@ -68,7 +68,7 @@ public class EditPlayerData {
 	}
 	
 	public static void removeData(OfflinePlayer p, String type, int Amount) {
-	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystem").getDataFolder(), File.separator + "DataBase");
+	    File userdata = new File(Bukkit.getServer().getPluginManager().getPlugin("LevelSystemAPI").getDataFolder(), File.separator + "DataBase");
 	    File f = new File(userdata, File.separator + p.getUniqueId() + ".yml");
 	    FileConfiguration playerData = YamlConfiguration.loadConfiguration(f); 
 	    

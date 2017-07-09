@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import me.proxygames.main.main;
@@ -77,14 +76,32 @@ if(newversion > version) {
 }
 
 } catch (IOException e) {
-	Bukkit.broadcastMessage("dsd");
 	
 }
 }
+
 return "ERROR";
 }
 
 
+public static String GetNewestVersion() {
 
+if (main.getConfigFile().getBoolean("update-checker")) {
+ String readurl1 = "https://raw.githubusercontent.com/proxygames14/LevelSystem/master/version.txt";
+try {
+URL urls = new URL(readurl1);
+BufferedReader brs = new BufferedReader(new InputStreamReader(urls.openStream()));
+String line = brs.readLine();
+brs.close();
+
+return line.substring(13);
+
+} catch (IOException e) {
+	
+}
+}
+
+return "ERROR";
+}
 
 }
