@@ -61,6 +61,7 @@ public class main extends JavaPlugin implements Listener {
 		  updatechecker = new Updater(this);
 		  updatechecker.startUpdateCheck();	
 		  Updater.UpdaterFiles();
+		  CreateConfig();
 	}
 	
 	public void onDisable() {

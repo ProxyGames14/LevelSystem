@@ -66,6 +66,7 @@ public class LevelSystem {
 			Player player = (Player) p;
 			LevelMessage(player, p);
 			BroadCastMessage((Player) p);
+			TitleMessages((Player) p);
 			}
 			
 			if(xp >= maxxp) {
@@ -121,6 +122,12 @@ public class LevelSystem {
 		LevelUpdater.GetBroadCastFormat(p);
 		return;
 	}
+	
+	public static void TitleMessages(Player p) {
+		LevelUpdater.GetTitleMessages(p);
+		return;
+	}
+	
 	@SuppressWarnings("deprecation")
 	public static void LevelSound(Player p) {
 		if(PlaceHolders.toInt(getData(Bukkit.getOfflinePlayer(p.getName()))[3]) == PlaceHolders.toInt(main.getConfigFile().getString("MaxLevel"))) {

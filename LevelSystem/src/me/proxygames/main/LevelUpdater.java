@@ -1,5 +1,7 @@
 package me.proxygames.main;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
@@ -112,18 +114,63 @@ public class LevelUpdater {
 			  for(int test = first; test < last; test++) {
 				  if(Integer.parseInt(EditPlayerData.getData(Bukkit.getOfflinePlayer(p.getName()), "level")) == test) {
 					  formatfile = main.getformats().getStringList("BroadcastMessages." + format + ".message");
-					  if(main.getformats().getString("Type").equalsIgnoreCase("prefix")) {
 						  for(int is = 0; is < formatfile.size(); is++) {
 							  Bukkit.broadcastMessage(PlaceHolders.Pholders(Bukkit.getOfflinePlayer(p.getName()), LevelSystem.getData(Bukkit.getOfflinePlayer(p.getName())), ToColors(formatfile.get(is))));  
-						  }
 
 					  }
 				  }
 			  }
 		  }
-		return "hey";
+		return "";
 		
 	}	
+	
+	
+	
+	
+	@SuppressWarnings("deprecation")
+	public static String GetTitleMessages(Player p) {		
+		  Set<String> List = main.getformats().getConfigurationSection("TitleMessages").getKeys(false);
+		  String format;
+		  java.util.List<String> formatfile;
+		  for(int i = 0; i < List.size(); i++) {
+			  format = (String) List.toArray()[i];
+			  String[] counts = format.split("-");
+			  int first = Integer.parseInt(counts[0]);
+			  int last = Integer.parseInt(counts[1]) + 1;
+			  
+			  for(int test = first; test < last; test++) {
+				  if(Integer.parseInt(EditPlayerData.getData(Bukkit.getOfflinePlayer(p.getName()), "level")) == test) {
+					  formatfile = main.getformats().getStringList("TitleMessages." + format + ".title");
+					  if(main.getformats().getString("TitleMessages." + format + ".times.fadeIn") == null || main.getformats().getString("TitleMessages." + format + ".times.fadeOut") == null || main.getformats().getString("TitleMessages." + format + ".times.display") == null) return null;
+					  int fadein = main.getformats().getInt("TitleMessages." + format + ".times.fadeIn");					  
+					  int display = main.getformats().getInt("TitleMessages." + format + ".times.display");	
+					  int fadeout = main.getformats().getInt("TitleMessages." + format + ".times.fadeOut");	
+					  
+					  List<String> title = new ArrayList<String>();
+					  
+					  if(formatfile.size() == 0) return null;
+						  for(int is = 0; is < formatfile.size(); is++) {
+							  title.add(PlaceHolders.Pholders(Bukkit.getOfflinePlayer(p.getName()), LevelSystem.getData(Bukkit.getOfflinePlayer(p.getName())), ToColors(formatfile.get(is))));
+							  
+							  if(title.size() == 1) {
+								  p.sendTitle(title.get(0), "", fadein, display, fadeout);	  
+							  } else if (title.size() == 2) {
+								  p.sendTitle(title.get(0), title.get(1), fadein, display, fadeout);	  
+							  } else {
+								  return null;
+							  }
+							  
+							  
+						  }
+
+				  }
+			  }
+		  }
+		return "";
+		
+	}
+	
 	
     
 	  private static String ToColors(String text)

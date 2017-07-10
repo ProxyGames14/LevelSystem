@@ -70,8 +70,37 @@ public class UpdateFormats {
 			Updater.amount++;
 		}
 		
-		if(main.getformats().getString("Type") == null) {
-			main.getformats().set("Type", true);
+		if(!main.getformats().getConfigurationSection("").getKeys(false).contains("TitleMessages")) {
+			String[] ListFirst = {
+					"0-99"
+					,"100-100"
+					};
+			String[] ListSecond0 = {
+					"&a%player% &ejust leveled to &bLevel %level%"
+					};
+			String[] ListSecond1 = {
+					"&a%player% &6Maxed level"
+					};
+			for(int i = 0; i < ListFirst.length; i++) {
+				if(i == 0)
+				main.getformats().set("TitleMessages." + ListFirst[i] + ".title", ListSecond0);
+				
+				main.getformats().set("TitleMessages." + ListFirst[i] + ".times.fadeIn", 10);
+				main.getformats().set("TitleMessages." + ListFirst[i] + ".times.display", 20);
+				main.getformats().set("TitleMessages." + ListFirst[i] + ".times.fadeOut", 10);
+				if(i == 1)
+				main.getformats().set("TitleMessages." + ListFirst[i] + ".title", ListSecond1);
+				
+				main.getformats().set("TitleMessages." + ListFirst[i] + ".times.fadeIn", 10);
+				main.getformats().set("TitleMessages." + ListFirst[i] + ".times.display", 20);
+				main.getformats().set("TitleMessages." + ListFirst[i] + ".times.fadeOut", 10);
+			}
+
+			Updater.amount++;
+		}
+		
+		if(!main.getformats().getString("Type").equalsIgnoreCase("suffix") || !main.getformats().getString("Type").equalsIgnoreCase("prefix")) {
+			main.getformats().set("Type", "prefix");
 			Updater.amount++;
 		}
 		

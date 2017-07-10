@@ -29,6 +29,22 @@ BroadcastMessages:
     message: 
     - '&a%player% &6Maxed level'
 
+TitleMessages:
+  0-99:
+    title: 
+    - '&a%player% &ejust leveled to &bLevel %level%'
+    times:
+     fadeIn: 10
+     display: 20
+     fadeOut: 10
+  100-100:
+    title: 
+    - '&a%player% &6Maxed level'
+    times:
+     fadeIn: 10
+     display: 20
+     fadeOut: 10
+
 Type: prefix
 CheckStatsFormat:
 - '&9&m-------------------------------------------'

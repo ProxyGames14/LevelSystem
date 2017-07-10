@@ -21,7 +21,7 @@ public class DownloadPlugin {
 
 
 		  public static void download(CommandSender sender) {
-			  String s = "https://dev.bukkit.org/projects/levelsystem/files/2446250/download";
+			  String s = "https://dev.bukkit.org/projects/levelsystem/files/latest";
 			  File dataFolder = new File("plugins/");
 			  
 		      if (!dataFolder.exists()) {
