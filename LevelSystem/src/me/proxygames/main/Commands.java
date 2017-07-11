@@ -8,6 +8,8 @@ import java.io.File;
 
 import me.proxygames.main.format.MainForm;
 import me.proxygames.main.updatechecker.DownloadPlugin;
+import me.proxygames.main.updatechecker.InfoServer;
+import me.proxygames.main.updatechecker.ListVersions;
 import me.proxygames.main.updatechecker.Updater;
 
 import org.bukkit.Bukkit;
@@ -27,7 +29,6 @@ public class Commands implements CommandExecutor {
 	}	
 	private Updater updatechecker;
 	public String version;
-	
 
 	
 	@SuppressWarnings({ "deprecation", "static-access" })
@@ -54,13 +55,17 @@ public class Commands implements CommandExecutor {
                &&!(a[0].equalsIgnoreCase("update")) 
                &&!(a[0].equalsIgnoreCase("download")) 
                &&!(a[0].equalsIgnoreCase("version")) 
+               &&!(a[0].equalsIgnoreCase("test")) 
                 ) 
             {	
             	ErrorMessage(sender, label);
             	return false;	
             }
             
-
+			if(a[0].equalsIgnoreCase("test")) {
+				Bukkit.broadcastMessage("testing");
+				InfoServer.checkLibbary(a, sender);
+			}
             //Help menu starts here
 			if(a[0].equalsIgnoreCase("help")) {
 			    if(!sender.hasPermission("levelsystem.command.help")) {
@@ -290,16 +295,43 @@ public class Commands implements CommandExecutor {
 			    	NoPermissions.Send(sender, "levelsystem.command.version");
 			    	return false;
 			    }
-				if(a.length > 1) {
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Type &a/" + label +" version"));
-					return false;
-				}
+				if(a.length == 1) {
 				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', 
 					    "&7----------------------------------------\n"
 						+"\n&b&lCurrent Version&f: v" + main.pl.getDescription().getVersion()
 						+"\n&e&lNewest Version&f: v" + Updater.GetNewestVersion()
 						+"\n&7----------------------------------------"
 						));
+				return false;
+				}
+				if(a.length > 3) {
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Type &a/" + label +" version [VERSION] | list (page)"));
+					return false;
+				}
+				
+				if(a[1].equalsIgnoreCase("list")) {
+					if(a[2].matches("^[0-9]+$") == false) {
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7We cannot find page! only put numbers!"));
+						return false;
+					}
+					ListVersions.checkList(a, sender);
+					return false;
+				}
+				if(a.length == 2 && a[1].matches("^[0-9]+$") == false && a[1].contains(".") && a[1].toString().length() == 5 
+						&& a[1].toString().substring(1, 2).equalsIgnoreCase(".")
+						&& a[1].toString().substring(3, 4).equalsIgnoreCase(".")
+						) {
+                    if(Integer.parseInt(a[1].replace(".", "")) > Integer.parseInt(Updater.GetNewestVersion().replace(".", ""))) {
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7That version is from the future! Have patience"));
+                    	return false;
+                    }
+					InfoServer.checkLibbary(a, sender);
+					return false;
+				} else {
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Wrong input! Example: 1.5.3"));
+					return false;
+				}
+
 			}
 			
 			
