@@ -1,5 +1,5 @@
 -1.0.7
-[Beta]
+[Release]
 Upgraded /version command. You can now search for versions and see the details!
 Example: /version (version) or /version list (page)
 Fixed bugs
