@@ -1,4 +1,22 @@
-1.0.6
+-1.0.6
 This version has
 omg
+-end
+
+-1.0.3
+-end
+
+-1.0.2
+[Beta]
+Bug fixes
+Added Xp/Level bar
+Fixed the onJoin PlayerFile
+New file: worldbar.yml
+Configurable level/xp bar in worlds
+-end
+
+-1.0.1
+[Release]
+This is the first upload!
+It contains the default stuff!
 -end
