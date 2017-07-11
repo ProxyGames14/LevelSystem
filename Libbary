@@ -1,9 +1,39 @@
+-1.0.7
+[Release]
+Comming soon.
+-end
+
 -1.0.6
-This version has
-omg
+[Release]
+Command added /version "To see the version and newest"
+/level download (Fix)
+permissions added (levelsystem.command.version)
+Added title function in format.yml
+Added title timers
+Fixed chat and TabList
+Fixed bugs
+-end
+
+-1.0.5
+[Release]
+Added new command /level download (It will automaticly download newest version)
+Added 2 permissions: levelsystem.command.update And levelsystem.command.download
+Auto update files! To update all the new file features!
+Fixed bugs
+-end
+
+-1.0.4
+[Release]
+Added new command /level update (It will automaticly update the files if I added a new option in it)
+Fixed bugs
+Fixed the updatechecker!
 -end
 
 -1.0.3
+[Release]
+Added broadcast message in format.yml
+Fixed bugs
+Added "/level checkupdates" Command.
 -end
 
 -1.0.2
