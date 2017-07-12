@@ -56,7 +56,7 @@ public class ListVersions {
 			
 			int size = list.size();
 			int maxperpage = 5;
-			int maxpages = size % maxperpage;
+			double maxpages = Math.floor(size / maxperpage) + 1;
 			int selectpage = select*maxperpage -5;
 			if(size < (selectpage) + 1) {
 				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Page doesn't exist"));
@@ -70,10 +70,14 @@ public class ListVersions {
 
 			
 		}
-		public static void senddata(String[] a, CommandSender sender, List<String> send, int selectpage, int maxpages) {
+		public static void senddata(String[] a, CommandSender sender, List<String> send, int selectpage, double maxpages) {
+			int page = 1;
+			if(a.length == 3) {
+				page = Integer.parseInt(a[2]); 	
+			}
 			String[] list;
             sender.sendMessage(color("&7-------------------------------------------------\n"));
-            sender.sendMessage(color("&a&lVersions List &ePage " + a[2] + "/" + (maxpages+1) + "\n "));
+            sender.sendMessage(color("&a&lVersions List &ePage " + page + "/" + ((int)maxpages) + "\n "));
 			for(int i = 0; i < send.size(); i++) {
 				list = send.get(i).split(" ");
 				sender.sendMessage(color("&b➤ &ev" + list[0] + " &a[" + list[1] + "] &d" + list[2].toUpperCase()));
@@ -82,6 +86,13 @@ public class ListVersions {
 		}
 		public static String color(String s) {
 			return ChatColor.translateAlternateColorCodes('&', s);
+		}
+		
+		public static Boolean isvalid(String[] a) {
+			if(a.length == 2 && a[1].matches("^[0-9]+$") == false && a[1].contains(".") && a[1].toString().length() == 5 
+					&& a[1].toString().substring(1, 2).equalsIgnoreCase(".")
+					&& a[1].toString().substring(3, 4).equalsIgnoreCase("."))
+				return true; else return false;
 		}
 	
 }

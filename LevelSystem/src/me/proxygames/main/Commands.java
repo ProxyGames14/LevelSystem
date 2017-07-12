@@ -55,16 +55,33 @@ public class Commands implements CommandExecutor {
                &&!(a[0].equalsIgnoreCase("update")) 
                &&!(a[0].equalsIgnoreCase("download")) 
                &&!(a[0].equalsIgnoreCase("version")) 
-               &&!(a[0].equalsIgnoreCase("test")) 
                 ) 
             {	
             	ErrorMessage(sender, label);
             	return false;	
             }
             
-			if(a[0].equalsIgnoreCase("test")) {
-				Bukkit.broadcastMessage("testing");
-				InfoServer.checkLibbary(a, sender);
+			if(a[0].equalsIgnoreCase("download")) {
+			    if(!sender.hasPermission("levelsystem.command.download")) {
+			    	NoPermissions.Send(sender, "levelsystem.command.download");
+			    	return false;
+			    }
+			    
+			    if(a.length != 2) {
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Type &a/" + label +" download &6[VERSION] &fTry /" + label + " version list"));
+			    	return false;
+			    }
+				if(ListVersions.isvalid(a)) {
+                    if(Integer.parseInt(a[1].replace(".", "")) > Integer.parseInt(Updater.GetNewestVersion().replace(".", ""))) {
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7That version is from the future! Have patience"));
+                    	return false;
+                    }
+                    DownloadPlugin.checkDownloads(a, sender);
+                    } else {
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7Wrong input! Example: 1.5.3"));
+					return false;
+				     }
+				
 			}
             //Help menu starts here
 			if(a[0].equalsIgnoreCase("help")) {
@@ -78,7 +95,8 @@ public class Commands implements CommandExecutor {
 	            	return false;	
 				}
 				int page = 1;
-				if(a.length != 1) {
+				if(a.length != 1 && a[1].matches("^[0-9]+$") == true) {
+					page = Integer.parseInt(a[1]);
 				}
 				
 				int maxpages = 3;
@@ -113,7 +131,7 @@ public class Commands implements CommandExecutor {
 								+"\n&67. &a/" + label +" delete &6[PLAYER] &f(To delete the player file)"
 								+"\n&68. &a/" + label +" checkupdates &f(To check updates on the site)"
 								+"\n&69. &a/" + label +" update &f(To check updates and fix file data)"
-								+"\n&610. &a/" + label +" download &f(To download newest version)"
+								+"\n&610. &a/" + label +" download (version) &f(To download newest version)"
 								+"\n&7----------------------------------------"
 								));
 					}
@@ -121,7 +139,7 @@ public class Commands implements CommandExecutor {
 						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', 
 							    "\n&7----------------------------------------\n"
 								+ "&d&l&oLevel System &ev" + plugin.getDescription().getVersion() + " &7&oPage: " + page +"/" + maxpages +">\n"
-								+"\n \n&611. &a/" + label +" version &f(To check the plugin version)"
+								+"\n \n&611. &a/" + label +" version (version) | list (page)"
 								+"\n&7----------------------------------------"
 								));
 					}
@@ -200,16 +218,6 @@ public class Commands implements CommandExecutor {
 	        	LevelUpdater.CheckTabOnlinePlayer(p);
 				return false;
 				
-			}
-			if(a[0].equalsIgnoreCase("download")) {
-			    if(!sender.hasPermission("levelsystem.command.download")) {
-			    	NoPermissions.Send(sender, "levelsystem.command.download");
-			    	return false;
-			    }
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &eTrying to download from Bukkit!"));
-				DownloadPlugin.download(sender);
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &aSuccesfully downloaded&b LevelSystem &ev" + Updater.GetNewestVersion() + " \n&cLevel > &cTIP &fReload to sumbit"));
-				return false;
 			}
 			
 			if(a[0].equalsIgnoreCase("update")) {
@@ -310,6 +318,10 @@ public class Commands implements CommandExecutor {
 				}
 				
 				if(a[1].equalsIgnoreCase("list")) {
+					if(a.length == 2) {
+						ListVersions.checkList(a, sender);
+						return false;
+					}
 					if(a[2].matches("^[0-9]+$") == false) {
 						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7We cannot find page! only put numbers!"));
 						return false;
@@ -317,10 +329,7 @@ public class Commands implements CommandExecutor {
 					ListVersions.checkList(a, sender);
 					return false;
 				}
-				if(a.length == 2 && a[1].matches("^[0-9]+$") == false && a[1].contains(".") && a[1].toString().length() == 5 
-						&& a[1].toString().substring(1, 2).equalsIgnoreCase(".")
-						&& a[1].toString().substring(3, 4).equalsIgnoreCase(".")
-						) {
+				if(ListVersions.isvalid(a)) {
                     if(Integer.parseInt(a[1].replace(".", "")) > Integer.parseInt(Updater.GetNewestVersion().replace(".", ""))) {
 						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cLevel > &7That version is from the future! Have patience"));
                     	return false;
