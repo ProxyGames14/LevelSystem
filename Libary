@@ -1,3 +1,11 @@
+-1.0.8
+[Release]
+Upgraded the download command! (You can download versions)
+Fixed /version error!
+Fixed help pages
+Bug fixes
+-end
+
 -1.0.7
 [Release]
 Upgraded /version command. You can now search for versions and see the details!
